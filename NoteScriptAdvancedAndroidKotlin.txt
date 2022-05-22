@@ -1,0 +1,198 @@
+*****************************************************
+Note and Script Advanced Android Kotlin
+*****************************************************
+------------------------------------------------------------
+DAY 1
+------------------------------------------------------------
+# ตรวจสอบเครื่องมือที่ใช้เรียน
+---
+Java JDK 11.x
+---
+$ java -version
+$ set JAVA_HOME
+
+Android Studio
+----
+$ android list target
+
+Git
+---
+$ git version
+
+Section 1: Workshop การออกแบบ Bottom Navigation ร่วมกับ DrawerLayout โดยใช้ Navigation Component
+---
+Fragment
+---
+เมนูด้านล่าง (Bottom Navigation)
+---
+HomeFragment.kt           <=>  fragment_home.xml
+ProductFragment.kt        <=>  fragment_product.xml
+AddProductFragment.kt  <=>  fragment_add_product.xml
+NotificationFragment.kt   <=>  fragment_notification.xml
+AccountFragment.kt	      <=>  fragment_account.xml
+
+----
+เมนูด้านข้าง (Drawer Menu)
+---
+AboutFragment.kt           <=>  fragment_about.xml
+ServiceFragment.kt        <=>  fragment_service.xml
+SettingFragment.kt         <=>  fragment_setting.xml
+
+drawable สำหรับทำภาพไอคอน
+---
+ic_home.xml
+ic_product.xml
+ic_add.xml
+ic_notification.xml
+ic_account.xml
+ic_about.xml
+ic_service.xml
+ic_setting.xml
+ic_signout.xml
+
+values สำหรับกำหนดสี
+---
+colors.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00796B</color>
+    <color name="primary_light">#B2DFDB</color>
+    <color name="accent">#FF9800</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
+
+themes.xml
+---
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.FirstAndroidApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_dark</item>
+        <item name="colorSecondaryVariant">@color/primary_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/notosanthai</item>
+    </style>
+
+    <!-- เปลี่ยนฟอนต์ Navigation View-->
+    <style name="NavFontStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/notosanthai</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
+</resources>
+
+
+การสร้าง header สำหรับเอามาแสดงผลใน drawer menu
+---
+Step 1: สร้างไฟล์ nav_header.xml ไว้ใน res/layout
+---
+
+------------------------------------------------------------
+DAY 2
+------------------------------------------------------------
+การทำงานกับ Recycleview
+
+------------------------------------------------------------
+DAY 3
+------------------------------------------------------------
+Noet: คำสั่งเช็คดูรายชื่อ package ที่ติดตั้งไว้ในโปรเจ็กต์ทั้งหมด
+---
+dotnet list package
+
+หากต้องการลบ Package ที่ไม่ต้องการออก
+---
+dotnet remove package <PACKAGE_NAME>
+Ex. dotnet remove package Newtonsoft.Json
+
+ติดตั้งชุดคำสั่ง dotnet-ef cli
+---
+ตรวจเช็คว่ามีการติดตั้ง ไว้หรือยัง
+dotnet ef --version
+
+หากยังไม่พบให้ทำการติดตั้งก่อน
+dotnet tool install --global dotnet-ef --version 5.0.17
+
+หากต้องต้องการลบออก
+dotnet tool uninstall dotnet-ef --global
+
+สร้าง Migration ไฟล์ไว้ทำการ migrate ตัวฐานข้อมูล
+---
+dotnet ef migrations add <ชื่อไฟล์ migration>
+ตัวอย่าง 
+dotnet ef migrations add initial
+
+หากต้องการลบ Migration ไฟล์เดิมออก
+dotnet ef migrations remove
+
+ทำการ Migrate ตัว Migration ให้เป็นฐานข้อมูล
+---
+dotnet ef database update
+
+การ Run โปรเจ็กต์ webapi
+---
+การรันปกติ (ไม่ hot reload เมื่อมีการแก้ไขไฟล์)
+$ dotnet run
+
+การรันแบบมี hot reload เมื่อแก้ไขไฟล์
+$ dotnet watch run
+
+การ Run โปรเจ็กต์ webapi แบบ any ip
+dotnet watch run --urls http://0.0.0.0:5001
+
+ตัวอย่าง API ที่ publish ไว้แล้ว
+---
+http://smart-inventory-ep3.herokuapp.com/api/products
+
+build.gradle
+----
+// for Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
+
+    // Recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    // Retrofit for Rest API
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //ViewModel and livedata
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+
+
+[
+  {
+    "productID": 4,
+    "productName": "Macbook Pro M1",
+    "unitPrice": 45000.00,
+    "unitInStock": 10,
+    "productPicture": "https://notebookspec.com/nbs/upload_notebook/20211019-165336_c.jpg",
+    "createdDate": "2021-11-15T10:30:00",
+    "modifiedDate": "2021-11-15T10:30:00",
+    "categoryName": "Labtop",
+    "categoryStatus": 1
+  }
+]
+
+------------------------------------------------------------
+DAY 4
+------------------------------------------------------------
+การทำงานกับ MVVM
